@@ -1,57 +1,164 @@
-//enter the team manager’s name, employee ID, email address, and office number
-//menu to add engineer/intern/ or finish building team
-//select engineer
-//i am taken back to the menu
-//selct intern
-//select finish
-//generate html file
-
-const fs = require("fs");
+// Enter the team manager's name, employee ID, email address, and office number
+// Menu to add engineer/intern/or finish building team
+// Select engineer: I am prompted to enter the engineer's name, ID, email, and GitHub username,
+// I am taken back to the menu
+// Select intern: enter the intern's name, ID, email, and school,
+// Select Finish
+// Generate HTML File
 const inquirer = require("inquirer");
-//generate html
-const generateHTML = ({ managerName, managerID, managerEmail, managerNumber }) => `<!DOCTYPE html>
+const fs = require("fs");
+const team = [];
+const Manager = require("./lib/Manager");
+
+// Create Manager
+function createManager() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "What is your manager's name?",
+        name: "managerName",
+      },
+
+      {
+        type: "input",
+        message: "What is your manager's employee ID?",
+        name: "managerID",
+      },
+
+      {
+        type: "input",
+        message: "What is your manager's email?",
+        name: "managerEmail",
+      },
+
+      {
+        type: "input",
+        message: "What is your manager's number?",
+        name: "managerNumber",
+      },
+    ])
+    .then((answers) => {
+      console.log(answers);
+      // Create a new Manager Object from the manager class.
+      const manager = new Manager(answers.managerName, answers.managerID, answers.managerEmail, answers.managerNumber);
+      // Push manager on to team array.
+      team.push(manager);
+      createTeam();
+    });
+}
+
+function createEngineer() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "What is your Engineer's name?",
+        name: "engineerName",
+      },
+
+      {
+        type: "input",
+        message: "What is your Engineer's employee ID?",
+        name: "engineerID",
+      },
+
+      {
+        type: "input",
+        message: "What is your Engineer's email?",
+        name: "engineerEmail",
+      },
+
+      {
+        type: "input",
+        message: "What is your Engineer's Github?",
+        name: "engineerGithub",
+      },
+    ])
+    .then((answers) => {
+      console.log(answers);
+      // Create a new Manager Object from the manager class.
+
+      // Push manager on to team array.
+      createTeam();
+    });
+}
+
+function createIntern() {
+  inquirer
+    .prompt([
+      {
+        type: "input",
+        message: "What is your Intern's name?",
+        name: "internName",
+      },
+
+      {
+        type: "input",
+        message: "What is your Intern's employee ID?",
+        name: "internID",
+      },
+
+      {
+        type: "input",
+        message: "What is your Intern's email?",
+        name: "internEmail",
+      },
+
+      {
+        type: "input",
+        message: "What is your Intern's School?",
+        name: "internSchool",
+      },
+    ])
+    .then((answers) => {
+      console.log(answers);
+      // Create a new Manager Object from the manager class.
+
+      // Push manager on to team array.
+      createTeam();
+    });
+}
+function createTeam() {
+  inquirer
+    .prompt([
+      {
+        type: "list",
+        message: "Add an Engineer or an Intern or Finish?",
+        name: "mainMenu",
+        choices: ["Engineer", "Intern", "Finish"],
+      },
+    ])
+    .then((answers) => {
+      console.log(answers);
+      if (answers.mainMenu === "Engineer") {
+        createEngineer();
+      } else if (answers.mainMenu === "Intern") {
+        createIntern();
+      } else {
+        const parseHTML = generateHTML(team);
+
+        // Write to File
+        fs.writeFile("team.html", parseHTML, (err) => (err ? console.error(err) : console.log("Success!")));
+      }
+    });
+}
+// Generate HTML
+const generateHTML = (team) => `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${managerName}</title>
+    <title>Team Profile Builder</title>
 </head>
 <body>
-    <div>${managerName}</div>
-    <div>${managerID}</div>
-    <div>${managerEmail}</div>
-    <div>${managerNumber}</div>
+<div>${team[0].getName()} </div>
+<div>${team[0].getId()} </div>
+<div>${team[0].getEmail()} </div>
+<div>${team[0].getOfficeNumber()} </div>
 </body>
 </html>`;
+// Ask Questions to Populate HTML
 
-//ask questions to populate html
-inquirer
-  .prompt([
-    {
-      type: "input",
-      message: "what is the manager's name?",
-      name: "managerName",
-    },
-    {
-      type: "input",
-      message: "what is the manager's employee ID?",
-      name: "managerID",
-    },
-    {
-      type: "input",
-      message: "what is the manager's email address?",
-      name: "managerEmail",
-    },
-    {
-      type: "input",
-      message: "what is the manager's office number?",
-      name: "managerNumber",
-    },
-  ])
-  .then((answers) => {
-    console.log(answers);
-    const parseHTML = generateHTML(answers);
-    //write to file
-    fs.writeFile("team.html", parseHTML, (err) => (err ? console.error(err) : console.log("Success!")));
-  });
+createManager();
