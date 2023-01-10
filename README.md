@@ -29,6 +29,12 @@ This application is covered under the MIT license
   * Email:
     * williamgeorgethomas@gmail.com
 
+# Demo
+
+[Link to demo video](https://drive.google.com/file/d/1JVNKMwMEffE43JsMvzsBKbnIDeL-lq3G/view)
+
+
+
 # Screenshot
 
 ![screenshot of example page generated with application](./_C__Users_Will_code_team-profile-generator_example.html.png)
