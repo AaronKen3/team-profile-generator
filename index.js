@@ -93,25 +93,25 @@ function createIntern() {
     .prompt([
       {
         type: "input",
-        message: "What is your Intern's name?",
+        message: "Intern name?",
         name: "internName",
       },
 
       {
         type: "input",
-        message: "What is your Intern's employee ID?",
+        message: "Intern Employee ID?",
         name: "internID",
       },
 
       {
         type: "input",
-        message: "What is your Intern's email?",
+        message: "Please type the intern's email",
         name: "internEmail",
       },
 
       {
         type: "input",
-        message: "What is your Intern's School?",
+        message: "Where did the intern go to school?",
         name: "internSchool",
       },
     ])

@@ -24,10 +24,10 @@ This application is covered under the MIT license
   For further information:
  
   * GitHub:
-    * [https://github.com/WilliamGeorgeThomas](https://github.com/WilliamGeorgeThomas)
+    * [https://github.com/AaronKen3/team-profile-generator](https://github.com/AaronKen3/team-profile-generator)
  
   * Email:
-    * williamgeorgethomas@gmail.com
+    * ak3technology@gmail.com
 
 # Demo
 
