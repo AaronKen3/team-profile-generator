@@ -31,7 +31,7 @@ This application is covered under the MIT license
 
 # Demo
 
-[Link to demo video](https://drive.google.com/file/d/1JVNKMwMEffE43JsMvzsBKbnIDeL-lq3G/view)
+[Link to demo video] https://app.castify.com/view/b2f067fa-6ed0-4f01-ae40-792d08ab4d27
 
 
 
